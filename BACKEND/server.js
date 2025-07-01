@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors"); 
@@ -8,16 +9,14 @@ const voteRoutes = require('./routes/voteRoutes');
 
 const app = express();
 
-// ✅ Enable CORS for frontend origin
 app.use(cors({
-  origin: "*", // your Vite dev server
+  origin: "*",
   credentials: true
 }));
 
 app.use(express.json());
 
-// ✅ Connect MongoDB
-mongoose.connect("mongodb://127.0.0.1:27017/quizDB")
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connected"))
   .catch(err => console.error(err));
 

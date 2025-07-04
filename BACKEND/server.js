@@ -10,7 +10,7 @@ const voteRoutes = require('./routes/voteRoutes');
 const app = express();
 
 app.use(cors({
-  origin: "*",
+  origin: "https://quizz-zone.vercel.app",
   credentials: true
 }));
 

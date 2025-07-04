@@ -20,7 +20,7 @@ const QuizPage = () => {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/quiz?category=${category}`, {
+        const res = await fetch(`https://quizzone-backend-g4xm.onrender.com/api/quiz?category=${category}`, {
           headers: { Authorization: `Bearer ${user.token}` },
         });
         const data = await res.json();
@@ -56,7 +56,7 @@ const QuizPage = () => {
       if (!currentQ) return;
 
       try {
-        const res = await fetch(`http://localhost:5000/api/votes/${currentQ._id}`);
+        const res = await fetch(`https://quizzone-backend-g4xm.onrender.com/api/votes/${currentQ._id}`);
         const data = await res.json();
         setVotes((prev) => ({
           ...prev,
@@ -76,7 +76,7 @@ const QuizPage = () => {
 
   const fetchVotesById = async (questionId) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/votes/${questionId}`);
+      const res = await fetch(`https://quizzone-backend-g4xm.onrender.com/api/votes/${questionId}`);
       const data = await res.json();
       setVotes((prev) => ({
         ...prev,
@@ -130,7 +130,7 @@ const QuizPage = () => {
         })),
       };
 
-      fetch('http://localhost:5000/api/quizAttempt/submit', {
+      fetch('https://quizzone-backend-g4xm.onrender.com/api/quizAttempt/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -150,7 +150,7 @@ const QuizPage = () => {
 
   const handleVote = async (questionId, voteType) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/votes/${voteType}/${questionId}`, {
+      const res = await fetch(`https://quizzone-backend-g4xm.onrender.com/api/votes/${voteType}/${questionId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

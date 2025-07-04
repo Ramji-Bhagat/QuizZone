@@ -17,7 +17,7 @@ const Practice = () => {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/quiz?category=${category}`, {
+        const res = await fetch(`https://quizzone-backend-g4xm.onrender.com/api/quiz?category=${category}`, {
           headers: { Authorization: `Bearer ${user.token}` },
         });
         const data = await res.json();

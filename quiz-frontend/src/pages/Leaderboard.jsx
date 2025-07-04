@@ -16,7 +16,7 @@ const Leaderboard = () => {
 
   const fetchCategories = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/quiz/categories");
+      const res = await fetch("https://quizzone-backend-g4xm.onrender.com/api/quiz/categories");
       const data = await res.json();
       setCategories(data.categories || []);
     } catch (err) {
@@ -27,8 +27,8 @@ const Leaderboard = () => {
   const fetchLeaderboards = async () => {
     try {
       const catQuery = selectedCategory ? `&category=${selectedCategory}` : "";
-      const resAll = await fetch(`http://localhost:5000/api/quizAttempt/leaderboard?${catQuery}`);
-      const resToday = await fetch(`http://localhost:5000/api/quizAttempt/leaderboard?today=true${catQuery}`);
+      const resAll = await fetch(`https://quizzone-backend-g4xm.onrender.com/api/quizAttempt/leaderboard?${catQuery}`);
+      const resToday = await fetch(`https://quizzone-backend-g4xm.onrender.com/api/quizAttempt/leaderboard?today=true${catQuery}`);
 
       const dataAll = await resAll.json();
       const dataToday = await resToday.json();

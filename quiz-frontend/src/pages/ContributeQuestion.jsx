@@ -34,7 +34,7 @@ const ContributeQuestion = () => {
     setMessage('');
 
     try {
-      const res = await fetch('http://localhost:5000/api/quiz/contribute', {
+      const res = await fetch('https://quizzone-backend-g4xm.onrender.com/api/quiz/contribute', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

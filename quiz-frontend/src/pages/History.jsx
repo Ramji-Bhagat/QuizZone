@@ -11,7 +11,7 @@ const HistoryPage = () => {
 
   const fetchHistory = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/quizAttempt/history`, {
+      const res = await fetch(`https://quizzone-backend-g4xm.onrender.com/api/quizAttempt/history`, {
         headers: {
           Authorization: `Bearer ${user?.token}`,
         },

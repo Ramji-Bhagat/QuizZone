@@ -29,7 +29,7 @@ const AdminQuestionManager = () => {
     try {
       const payload = {
         ...newQuestion,
-        tags: newQuestion.tags.split(",").map(tag => tag.trim()), // Convert to array
+        tags: newQuestion.tags.split(",").map(tag => tag.trim()), 
       };
       const res = await axios.post("/api/quiz", payload, {
         headers: {

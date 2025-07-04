@@ -79,7 +79,7 @@ router.post("/submit", authenticateUser, async (req, res) => {
             return res.status(401).json({ error: "Unauthorized request" });
         }
 
-        // ✅ Check if this user already attempted this category before
+        // Check if this user already attempted this category before
         const previousAttempt = await Attempt.findOne({
             userId: req.user.userId,
             category
@@ -198,7 +198,7 @@ router.get("/leaderboard", async (req, res) => {
         return res.json(attempts);
       }
   
-      // 🟢 Normal leaderboard (all time, first attempt per user/category)
+      //Normal leaderboard (all time, first attempt per user/category)
       const leaderboard = await Attempt.aggregate([
         { $match: matchStage },
         { $sort: { createdAt: 1 } },

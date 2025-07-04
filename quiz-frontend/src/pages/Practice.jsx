@@ -21,7 +21,7 @@ const Practice = () => {
           headers: { Authorization: `Bearer ${user.token}` },
         });
         const data = await res.json();
-        setQuestions(data.filter(q => q.isApproved)); // ✅ Only approved
+        setQuestions(data.filter(q => q.isApproved)); // Only approved
       } catch (err) {
         console.error('Failed to load practice questions', err);
       }

@@ -4,7 +4,7 @@ const authMiddleware = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
-// ✅ Get all quizzes (Admin panel, or filtered)
+// Get all quizzes (Admin panel, or filtered)
 router.get("/", async (req, res) => {
   try {
     const { category, tags, onlyApproved } = req.query;
@@ -29,7 +29,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// ✅ Get approved questions for quiz attempt (for users)
+// Get approved questions for quiz attempt (for users)
 router.get("/attempt", authMiddleware, async (req, res) => {
   try {
     const { category, tags, difficulty } = req.query;
@@ -46,7 +46,7 @@ router.get("/attempt", authMiddleware, async (req, res) => {
   }
 });
 
-// ✅ Get all categories
+// Get all categories
 router.get("/categories", async (req, res) => {
   try {
     const categories = await Quiz.distinct("category");
@@ -56,7 +56,7 @@ router.get("/categories", async (req, res) => {
   }
 });
 
-// ✅ Admin: Add a new quiz
+// Admin: Add a new quiz
 router.post("/", authMiddleware, async (req, res) => {
   if (req.user.role !== "admin") return res.status(403).json({ error: "Unauthorized" });
 
@@ -69,7 +69,7 @@ router.post("/", authMiddleware, async (req, res) => {
   }
 });
 
-// ✅ Admin: Delete quiz by ID
+// Admin: Delete quiz by ID
 router.delete("/:id", authMiddleware, async (req, res) => {
   if (req.user.role !== "admin") return res.status(403).json({ error: "Unauthorized" });
 
@@ -81,7 +81,7 @@ router.delete("/:id", authMiddleware, async (req, res) => {
   }
 });
 
-// ✅ Admin: Update quiz by ID
+// Admin: Update quiz by ID
 router.put("/:id", authMiddleware, async (req, res) => {
   if (req.user.role !== "admin") return res.status(403).json({ error: "Unauthorized" });
 
@@ -101,7 +101,7 @@ router.put("/:id", authMiddleware, async (req, res) => {
   }
 });
 
-// ✅ User: Contribute a question
+// User: Contribute a question
 router.post("/contribute", authMiddleware, async (req, res) => {
   try {
     const newQuestion = new Quiz({
@@ -116,7 +116,7 @@ router.post("/contribute", authMiddleware, async (req, res) => {
   }
 });
 
-// ✅ Admin: View pending (unapproved) questions
+// Admin: View pending (unapproved) questions
 router.get("/pending", authMiddleware, async (req, res) => {
   try {
     if (req.user.role !== "admin") return res.status(403).json({ error: "Unauthorized" });
@@ -128,24 +128,7 @@ router.get("/pending", authMiddleware, async (req, res) => {
   }
 });
 
-// ✅ Admin: Approve a question (PUT)
-// router.put("/approve/:id", authMiddleware, async (req, res) => {
-//   if (req.user.role !== "admin") return res.status(403).json({ error: "Unauthorized" });
 
-//   try {
-//     const approvedQuestion = await Quiz.findByIdAndUpdate(
-//       req.params.id,
-//       { isApproved: true },
-//       { new: true }
-//     );
-//     res.json(approvedQuestion);
-//   } catch (err) {
-//     res.status(500).json({ error: "Failed to approve question" });
-//   }
-// });
-
-
-// 🔄 OPTIONAL: If you still want to support PATCH as well, uncomment this
 router.patch("/approve/:id", authMiddleware, async (req, res) => {
   if (req.user.role !== "admin") return res.status(403).json({ error: "Unauthorized" });
 

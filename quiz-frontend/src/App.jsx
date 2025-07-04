@@ -40,7 +40,7 @@ function App() {
           }
         />
         <Route
-          path='/practice/:category' // ✅ added Practice route
+          path='/practice/:category'
           element={
             <ProtectedRoute>
               <Practice />

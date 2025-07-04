@@ -24,7 +24,7 @@ const QuizPage = () => {
           headers: { Authorization: `Bearer ${user.token}` },
         });
         const data = await res.json();
-        setQuestions(data.filter(q => q.isApproved)); // ✅ Only approved
+        setQuestions(data.filter(q => q.isApproved)); // Only approved
         setTimeLeft(data[0]?.timeLimit || 30);
       } catch (err) {
         console.error('Failed to load practice questions', err);
